@@ -1,64 +1,34 @@
 debug = False
 
-def dprint(*args):
-    if debug:
-        print(*args)
-    
+from .utils import *
+
 
 def ints(nums):
     return [int(num) for num in nums]
 
 def solution(file):
 
-    result1 = 0
-    result2 = 0
+    sections = read(file)
 
-    lines = []
-    with open(file, 'r', encoding='UTF-8') as file:
-        lines = file.readlines()
-
-    stack_height = 0
-    for i in range(len(lines)):
-        line = lines[i].strip()
-        if not line:
-            stack_height = i - 1
-            break
-
-    # print(stack_height)
+    rows = sections[0][:-1]
 
     stacks1 = []
     stacks2 = []
-    marker_line = lines[stack_height]
-    # print(marker_line)
-    num_stacks = len(marker_line.split())
+    rotated = rotate(rows)
+    for col in rotated:
+        if col[0] in '[] ':
+            continue
+        stack = [c for c in col if c.strip()]
+        stacks1.append(stack)
+        stack = [c for c in col if c.strip()]
+        stacks2.append(stack)
 
-    # for stack in stacks:
-        #print(stack)
+    result1 = 0
+    result2 = 0
 
-    #[D] [D] [T] [F] [G] [B] [B] [H] [Z]
-    #0123456789012345678
-    # 1   5   9   1   1
-    #             3   7
-
-    for j in range(num_stacks):
-        stacks1.append([])
-        stacks2.append([])
-
-    for i in range(stack_height-1, -1, -1):
-        line = lines[i].rstrip()
-        # print(line)
-        for j in range(num_stacks):
-            if len(line)>j*4+1:
-                c = line[j*4+1]
-                if c != ' ':
-                    stacks1[j].append(c)
-                    stacks2[j].append(c)
-    
-    for i in range(stack_height + 2, len(lines)):
-        line = lines[i].strip()
+    for line in sections[1]:
         _, quantity, _, fro, _, to = line.split()
         quantity, fro, to = ints([quantity, fro, to])
-        # print(quantity, fro, to)
 
         # Part 1
         for j in range(quantity):
@@ -72,20 +42,16 @@ def solution(file):
         for j in range(quantity):
             stacks2[fro-1].pop()
 
-    #for stack in stacks:
-        #print(stack)
-
-
     tops1 = []
-    for i in range(num_stacks):
-        if stacks1[i]:
-            tops1.append(stacks1[i][-1])
+    for stack in stacks1:
+        if stack:
+            tops1.append(stack[-1])
     result1 = ''.join(tops1)
 
     tops2 = []
-    for i in range(num_stacks):
-        if stacks2[i]:
-            tops2.append(stacks2[i][-1])
+    for stack in stacks2:
+        if stack:
+            tops2.append(stack[-1])
     result2 = ''.join(tops2)
 
     return (result1, result2)
