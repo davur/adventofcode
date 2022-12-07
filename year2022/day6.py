@@ -38,6 +38,11 @@ def solution(file):
 
             result2 = i+14
 
+            ### One-liner version for fun
+            # result1 = [i for i in range(3, len(line)) if len(set(line[i-4:i]))==4][0]
+            # result2 = [i for i in range(13, len(line)) if len(set(line[i-14:i]))==14][0]
+            # # ^ Does the same as lines 20-40
+
             print(result1, result2)
 
 
