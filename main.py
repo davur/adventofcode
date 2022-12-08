@@ -10,7 +10,7 @@ Options:
   -h, --help         Show this screen.
   --version          Show version.
   --year=YEAR        Year [default: 2022].
-  --day=DAY          Day [default: 5].
+  --day=DAY          Day [default: 8].
   --debug            Enable debug logging.
   <data_source>...   Path(s) to data source.
 
@@ -19,7 +19,8 @@ from docopt import docopt
 
 
 
-if __name__ == '__main__':
+
+def main():
     arguments = docopt(str(__doc__), version="0.0.1")
 
     debug = arguments['--debug']
@@ -53,3 +54,6 @@ if __name__ == '__main__':
             print()
 
         print()
+
+if __name__ == '__main__':
+    main()
