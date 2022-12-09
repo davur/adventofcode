@@ -10,7 +10,7 @@ Options:
   -h, --help         Show this screen.
   --version          Show version.
   --year=YEAR        Year [default: 2022].
-  --day=DAY          Day [default: 8].
+  --day=DAY          Day [default: 9].
   --debug            Enable debug logging.
   <data_source>...   Path(s) to data source.
 
