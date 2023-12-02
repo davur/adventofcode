@@ -26,29 +26,36 @@ def solution(file):
         'blue': 14,
     }
 
-    for line in lines:
-        game_name, game_record = line.split(': ')
+    for game in lines:
+        min_counts = {
+            'red': 0,
+            'green': 0,
+            'blue': 0,
+        }
+
+        game_name, game_record = game.split(': ')
         _, game_number = game_name.split(' ')
         sets = game_record.split('; ')
         print(f'{sets}')
+        possible = True
         for s in sets:
             color_counts = s.split(', ')
-            possible = True
             for cc in color_counts:
                 count_string, color = cc.split(' ')
                 if int(count_string) > max_counts[color]:
                     possible = False
-                    break
-            if not possible:
-                break
+
+                count = int(count_string)
+                if min_counts[color] < count:
+                    min_counts[color] = count
+
 
         if possible:
             result1 += int(game_number)
         print(f'{possible=}')
 
-
-
-    for line in lines:
-        result2 += 1
+        power = min_counts['red'] * min_counts['green'] * min_counts['blue']
+        print(f'{power=}')
+        result2 += power
 
     return (result1, result2)
