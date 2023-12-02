@@ -17,16 +17,19 @@ Options:
 """
 from docopt import docopt
 
-from utils import read, read_data_sources, bcolors
+from utils import dprint, read_data_sources, bcolors
+import utils
 
 
 
 def main():
     arguments = docopt(str(__doc__), version="0.0.1")
 
+
     debug = arguments['--debug']
+    utils.debug = bool(debug)
     if debug:
-        print(arguments)
+        dprint(arguments)
 
     year = int(arguments['--year'])
     day = int(arguments['--day'])
@@ -53,12 +56,12 @@ def main():
         print(f"Data source #{ds_i} ({ds}): ")
         content, p1_expected, p2_expected = data_sources[ds]
 
-        result1, result2 = solution(ds)
+        result1, result2 = solution(content)
 
         print("Part 1:                            %s" % result1)
 
         if str(result1) == p1_expected:
-            print(f"{bcolors.OKGREEN}CORRECT -- Expected value          {p1_expected1}{bcolors.ENDC}")
+            print(f"{bcolors.OKGREEN}CORRECT -- Expected value          {p1_expected}{bcolors.ENDC}")
         else:
             print(f"{bcolors.FAIL}INCORRECT -- Expected value       {p1_expected}{bcolors.ENDC}")
         print()
