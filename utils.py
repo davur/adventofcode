@@ -24,12 +24,12 @@ def read_data_sources(year, day):
         p1_out = None
         if os.path.isfile(p1_path):
             with open(p1_path, 'r', encoding='UTF-8') as file:
-                p1_out = file.read()
+                p1_out = file.read().strip()
 
         p2_out = None
         if os.path.isfile(p2_path):
             with open(p2_path, 'r', encoding='UTF-8') as file:
-                p2_out = file.read()
+                p2_out = file.read().strip()
 
         data_sources[in_path] = [in_content, p1_out, p2_out]
 
@@ -50,19 +50,23 @@ class bcolors:
     UNDERLINE = '\033[4m'
 
 
-
+def warn(*args):
+    print(f"{bcolors.WARNING}", *args, f"{bcolors.ENDC}")
 
 
 def dprint(*args):
-    # pprint(*args)
-    pass
+    if debug:
+        print(f"{bcolors.OKBLUE}", *args, f"{bcolors.ENDC}")
+
 
 def ints(nums):
     return [int(num) for num in nums]
 
+
 def rotate(grid):
     rotated = list(zip(*grid[::-1]))
     return rotated
+
 
 def read(file):
     sections = []
@@ -80,8 +84,7 @@ def read(file):
         else:
             sections.append(section)
             section = []
-        sections.append(section)
-
+    sections.append(section)
     return sections
 
 
