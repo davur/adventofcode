@@ -64,15 +64,15 @@ def setup():
                 file.write('\n'.join(contents))
 
 
-        sample_output = f'year{year}/day{day}.sample{sample_suffix}.out'
+        sample_output = f'year{year}/day{day}.sample{sample_suffix}.p1.out'
         sample_exists = os.path.isfile(sample_output)
         prompt_for_input = False
         if sample_exists:
-            print(f"Sample file {sample_output} already exists")
+            print(f"P1 output file {sample_output} already exists")
             choice = input("Do you want to overwrite it? y/N: ")
             prompt_for_input = (choice[0] in 'yY')
         else:
-            print(f"Sample file {sample_output} does not exists")
+            print(f"P1 output file {sample_output} does not exists")
             choice = input("Do you want to create it? y/N: ")
             prompt_for_input = (choice[0] in 'yY')
 
@@ -82,6 +82,23 @@ def setup():
             with open(sample_output, 'w', encoding='UTF-8') as file:
                 file.write(expected_output)
 
+        sample_output = f'year{year}/day{day}.sample{sample_suffix}.p2.out'
+        sample_exists = os.path.isfile(sample_output)
+        prompt_for_input = False
+        if sample_exists:
+            print(f"P2 output file {sample_output} already exists")
+            choice = input("Do you want to overwrite it? y/N: ")
+            prompt_for_input = (choice[0] in 'yY')
+        else:
+            print(f"P2 output file {sample_output} does not exists")
+            choice = input("Do you want to create it? y/N: ")
+            prompt_for_input = (choice[0] in 'yY')
+
+        if prompt_for_input:
+            expected_output = input("Enter/Paste expected output: ")
+
+            with open(sample_output, 'w', encoding='UTF-8') as file:
+                file.write(expected_output)
 
 
         choice = input("Do have more samples? y/N: ")

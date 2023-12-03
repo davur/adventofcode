@@ -71,7 +71,7 @@ def main():
             if str(result2) == p2_expected:
                 print(f"{bcolors.OKGREEN}CORRECT -- Expected value          {p2_expected}{bcolors.ENDC}")
             else:
-                print(f"{bcolors.FAIL}INCORRECT -- Expected value       {p2_expected}{bcolors.ENDC}")
+                print(f"{bcolors.FAIL}INCORRECT -- Expected value        {p2_expected}{bcolors.ENDC}")
             print()
 
         print()
