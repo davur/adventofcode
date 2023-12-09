@@ -3,7 +3,10 @@ debug = False
 from utils import dprint, warn
 from collections import defaultdict
 from pprint import pprint
+# from math import lcm
 import copy
+import math
+
 
 
 def solution(sections):
@@ -46,7 +49,10 @@ def solution(sections):
         if node[-1] == 'A':
             positions.append(node)
 
+
     dprint(f'{len(positions)=}')
+
+    path_lengths = dict()
 
     done = False
 
@@ -61,8 +67,8 @@ def solution(sections):
             else:
                 position = paths[position][1]
 
-            if position[-1] == 'Z':
-                dprint(f'{pj=} {result2=}')
+            if position[-1] == 'Z' and pj not in path_lengths:
+                path_lengths[pj] = result2 + 1
 
             done &= bool(position[-1] == 'Z')
 
@@ -71,6 +77,16 @@ def solution(sections):
         di += 1
         if di == len(directions):
             di = 0
+
+        if len(path_lengths) == len(positions):
+            dprint(f'{path_lengths=}')
+            lcm = math.lcm(*path_lengths.values())
+            dprint(f'{lcm=}')
+            result2 = lcm
+            done = True
+
+
+
 
 
     return (result1, result2)
