@@ -4,6 +4,14 @@ import os
 debug = True
 
 
+def char_grid_from_lines(lines):
+    grid = []
+    for line in lines:
+        row = [c for c in line]
+        grid.append(row)
+    return grid
+
+
 def read_data_sources(year, day):
 
     ds_num = 1
