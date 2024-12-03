@@ -23,9 +23,25 @@ def solution(sections):
             result1 += 1
 
         safe = is_safe(levels, 1)
+
+        for i in range(0, len(levels)):
+            if safe:
+                break
+
+            new_levels = levels[0:i]
+            if i < len(levels):
+                new_levels += levels[i+1:]
+
+            safe = is_safe(new_levels)
+            if safe:
+                break
+
+
         print(f"{safe=}")
         if safe:
             result2 += 1
+
+        # Tried: 586
 
 
 
