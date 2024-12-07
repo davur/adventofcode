@@ -9,7 +9,7 @@ Usage:
 Options:
   -h, --help         Show this screen.
   --version          Show version.
-  --year=YEAR        Year [default: 2023].
+  --year=YEAR        Year [default: 2024].
   --day=DAY          Day [default: 1].
   --debug            Enable debug logging.
   <data_source>...   Path(s) to data source.
