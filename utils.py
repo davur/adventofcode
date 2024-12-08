@@ -4,6 +4,17 @@ import os
 debug = True
 
 
+
+def number_to_base(n, b):
+    if n == 0:
+        return [0]
+    digits = []
+    while n:
+        digits.append(int(n % b))
+        n //= b
+    return digits[::-1]
+
+
 def char_grid_from_lines(lines):
     grid = []
     for line in lines:
