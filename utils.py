@@ -4,7 +4,6 @@ import os
 debug = True
 
 
-
 def number_to_base(n, b):
     if n == 0:
         return [0]
